@@ -11,7 +11,7 @@ class Atomic_ops_scheduler():
 
     algorithm = 'first_available'
     client = MongoClient(
-        'mongodb+srv://david:zG27NaQ1Fk47Qlbz@clustermongodb.kpcj7of.mongodb.net/test', 27017)
+        'mongodb+srv://david:@clustermongodb.kpcj7of.mongodb.net/test', 27017)
 
     def __init__(self):
         Atomic_ops_scheduler.algorithm = 'first_available'
