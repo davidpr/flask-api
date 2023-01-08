@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: server-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: server
+  template:
+    metadata:
+      labels:
+        app: server
+    spec:
+      containers:
+      - name: server
+        image: datapta/server_docker
+        env:
+        - name: APP_SETTINGS_MODULE
+          value: "config.local"
+        - name: FLASK_APP
+          value: "entrypoint.py"
+        # deprecated
+        # - name: FLASK_ENV
+        #   value: "development"
+        - name: ENV
+          value: "development"
+        - name: FLASK_DEBUG
+          value: "1"
+        - name: FLASK_RUN_PORT
+          value: "4444"
+        volumeMounts:
+        - mountPath: /app/workloads
+          name: dbfile
+      volumes:
+      - name: dbfile
+        hostPath: 
+          path: /Users/david/antimetal-projects/antimetal/flask-server/server/workloads
+          type: Directory
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: server-srv
+spec:
+  type: NodePort
+  selector:
+    app: server
+  ports:
+    - name: client
+      protocol: TCP
+      port: 4444
+      targetPort: 4444

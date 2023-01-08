@@ -1,2 +1,7 @@
-# flask-api
-Flask API that schedules and manipulates AWS instances
+# REST API with Flask for a job scheduler in AWS
+
+
+
+
+
+

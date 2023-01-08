@@ -1,0 +1,26 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*
+      - ./infra/k8s-dev/*
+build:
+  local:
+    #do not push to docker hub
+    #comment this next line for EKS (remote cluster)
+    #push: false
+  artifacts:
+    #there is a pod out of the context directory
+    #to investigate the tag latest...
+    - image: datapta/server_docker
+      context: server
+      docker:
+        dockerfile: Dockerfile
+      sync:
+      #if the change is from here copy the file into pod, if not rebuild image
+        manual:
+          - src: "*.py"
+            dest: .
+          - src: "templates/*.html"
+            dest: .

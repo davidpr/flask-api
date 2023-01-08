@@ -1,0 +1,32 @@
+[
+    {
+        "_id": "antimetal.aws.1",
+        "provider":"aws",
+        "total_cores": 4,
+        "total_ram": 1024,
+        "available_cores": 4,
+        "available_ram": 1024,
+        "runtimes": ["python3.8", "python3.9"],
+        "workloads": []
+    },
+    {
+        "_id": "antimetal.gcp.1",
+        "provider":"gcp",
+        "total_cores": 6,
+        "total_ram": 2048,
+        "available_cores":6,
+        "available_ram": 2048,
+        "runtimes": ["node18", "node19"],
+        "workloads": []
+    },
+    {
+        "_id": "antimetal.azure.1",
+        "provider":"azure",
+        "total_cores": 6,
+        "total_ram": 2048,
+        "available_cores":6,
+        "available_ram":2048,
+        "runtimes": ["node18", "node19"],
+        "workloads": []
+    }
+]

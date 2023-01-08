@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-srv
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: "true"
+    #alb.ingress.kubernetes.io/auth-idp-cognito: '{"arn:aws:cognito-idp:eu-west-1:195403375557:userpool/eu-west-1_XLpsxJ9mp", "UserPoolClientId":"53i0tv0140o6100jk9e5ut8i0h", "UserPoolDomain":"finlooker-test2"}'
+
+spec:
+  rules:
+    - host: localhost
+    #- host: a00df1fe2bcaa48cb9ae76790f764b5d-06a643777738c715.elb.eu-west-1.amazonaws.com
+    #- host: finlooker.com
+      http:
+        paths:
+          - path: /?(.*)
+          #- path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: server-srv
+                port:
+                  number: 4444
